@@ -11,6 +11,14 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of polls from a single user
+exports.filter = function(req, res) {
+  Poll.find({owner:req.params.user}, function (err, polls) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(polls);
+  });
+};
+
 // Get a single poll
 exports.show = function(req, res) {
   Poll.findById(req.params.id, function (err, poll) {

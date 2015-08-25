@@ -8,7 +8,7 @@ angular.module('workspaceApp')
     $scope.poll.options = [{text: ''}, {text: ''}];
     $scope.getCurrentUser = Auth.getCurrentUser;
 
-    $http.get('/api/polls').success(function(polls) {
+    $http.get('/api/polls/user/' + Auth.getCurrentUser()._id).success(function(polls) {
       $scope.polls = polls;
     });
     
@@ -27,7 +27,13 @@ angular.module('workspaceApp')
             options.push({text: $scope.poll.options[i].text, count: 0});
           }
         }
-        $http.post('/api/polls', { question: $scope.poll.question, options: options, owner: Auth.getCurrentUser()._id });
+        var newPoll = { question: $scope.poll.question, options: options, owner: Auth.getCurrentUser()._id };
+        $scope.polls.push(newPoll);
+        $http.post('/api/polls', newPoll)
+          .success(function handlePost (newObj) {
+            $scope.polls.pop();
+            $scope.polls.push(newObj);
+          });
         $scope.poll.question = '';
         $scope.poll.options = [{text: ''}, {text: ''}];
       }
