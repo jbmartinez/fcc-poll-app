@@ -4,7 +4,7 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
-describe('GET /poll', function() {
+describe('GET /polls', function() {
 
   it('should respond with JSON array', function(done) {
     request(app)

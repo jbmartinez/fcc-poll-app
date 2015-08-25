@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var PollSchema = new Schema({
   //name: {type: String, required: true},
   owner: {
-    type: Schema.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'user'
   },
   question: {type: String, required: true},
