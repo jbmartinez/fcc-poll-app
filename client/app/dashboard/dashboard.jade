@@ -4,25 +4,28 @@ div(ng-include='"components/navbar/navbar.html"')
     | Create a new poll
     
   .col-sm-12
-      form.form(name='form', ng-submit='addPoll(form)', novalidate='')
-        .form-group
-          label Question
-          input.form-control(type='text', name='question', placeholder='Do you like polls?'  ng-model='question')
-        .form-group(ng-repeat="option in options")
-          label option
-          input.form-control(type='text', name='', ng-model='option.text')
-          button.btn(ng-if='$last', ng-click='addNewChoice()') Add choice
-
-        div
-          button.btn.btn-inverse.btn-lg.btn-login(type='submit')
-            | Create
-          = ' '
-        
-         ul.list-group
+      tabset(type='pills')
+        tab(heading='My polls')
+          ul.list-group
             li.list-group-item(ng-repeat='poll in polls')
               strong {{poll.question}}
-              a.trash(ng-click='delete(poll)')
-                span.glyphicon.glyphicon-trash.pull-right
+                a.trash(ng-click='delete(poll)')
+                  span.glyphicon.glyphicon-trash.pull-right
+          
+        tab(heading='Create new poll')
+          form.form(name='form', ng-submit='addPoll(form)', novalidate='')
+            .form-group
+              label Question
+              input.form-control(type='text', name='question', placeholder='Do you like polls?'  ng-model='poll.question')
+            .form-group(ng-repeat="option in poll.options")
+              label option
+              input.form-control(type='text', name='', ng-model='option.text')
+              button.btn(ng-if='$last', ng-click='addNewChoice()') Add choice
+    
+            div
+              button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+                | Create
+              = ' '
 
   p
     {{ getCurrentUser()._id }}
