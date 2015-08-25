@@ -24,7 +24,7 @@ exports.show = function(req, res) {
   Poll.findById(req.params.id, function (err, poll) {
     if(err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }
-    return res.json(poll);
+    return res.json(poll.populate('owner'));
   });
 };
 
