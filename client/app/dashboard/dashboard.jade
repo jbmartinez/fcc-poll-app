@@ -23,11 +23,4 @@ div(ng-include='"components/navbar/navbar.html"')
               button.btn(ng-if='$last', ng-click='addNewChoice()') Add choice
     
             div
-              button.btn.btn-inverse.btn-lg.btn-login(type='submit')
-                | Create
-              = ' '
-
-  p
-    {{ getCurrentUser()._id }}
-    {{ getCurrentUser().name }}
-    {{ getCurrentUser().email }}
+              button.btn.btn-inverse.btn-lg.btn-login(type='submit') Create
