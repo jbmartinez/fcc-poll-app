@@ -1,8 +1,6 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-  p
-    | Create a new poll
-    
+
   .col-sm-12
       tabset(type='pills')
         tab(heading='My polls')
@@ -13,9 +11,9 @@ div(ng-include='"components/navbar/navbar.html"')
                 a.trash(ng-click='delete(poll)')
                   span.glyphicon.glyphicon-trash.pull-right
           .results(ng-show="graphVisible")
-            p.pull-right(ng-click="hideGraph()") close
-            .col-sm-8
+            .col-sm-8.graph-results
               canvas#bar.chart.chart-bar(data="data", labels="labels" options="{showTooltips: false}")
+            p.close.pull-right(ng-click="hideGraph()") close
                   
         tab(heading='Create new')
           form.form(name='form', ng-submit='addPoll(form)', novalidate='')
@@ -28,7 +26,7 @@ div(ng-include='"components/navbar/navbar.html"')
               button.btn(ng-if='$last', ng-click='addNewChoice()') Add choice
     
             div
-              button.btn.btn-inverse.btn-lg.btn-login(type='submit') Create
+              button.btn.btn-primary.btn-lg(type='submit') Create
 
         tab(heading='Browse')
           ul.list-group
