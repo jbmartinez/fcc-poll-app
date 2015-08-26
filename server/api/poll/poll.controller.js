@@ -8,7 +8,7 @@ exports.index = function(req, res) {
   Poll.find(function (err, polls) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(polls);
-  });
+  }).limit(20);
 };
 
 // Get list of polls from a single user
