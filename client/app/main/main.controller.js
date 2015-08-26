@@ -2,9 +2,11 @@
 
 angular.module('workspaceApp')
   .controller('MainCtrl', function ($scope, $http, $location, Auth) {
-    if (Auth.isLoggedIn) {
-      $location.path('/dashboard');
-    }
+    Auth.isLoggedInAsync(function(loggedIn) {
+      if (loggedIn) {
+        $location.path('/dashboard');
+      }
+    });
 
     $scope.awesomeThings = [];
 
