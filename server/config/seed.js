@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Poll = require('../api/poll/poll.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -46,4 +47,21 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Poll.find({}).remove(function() {
+  Poll.create({
+    question: 'Do you like answering polls?',
+    options: [
+      {text: 'Yes!', count: 20},
+      {text: 'No', count: 10},
+      {text: 'Meh', count: 5}
+    ]
+  }, {
+    question: 'Are you learning in Free Camp Code?',
+    options: [
+      {text: 'of course!', count: 45},
+      {text: 'definitely!', count: 30}
+    ]
+  });
 });
