@@ -8,11 +8,16 @@ div(ng-include='"components/navbar/navbar.html"')
         tab(heading='My polls')
           ul.list-group
             li.list-group-item(ng-repeat='poll in polls')
-              strong {{poll.question}}
+              strong(ng-click="showGraph($index)") {{poll.question}} 
+              a(href="{{baseUrl + 'vote/' + poll._id}}") (link)
                 a.trash(ng-click='delete(poll)')
                   span.glyphicon.glyphicon-trash.pull-right
-          
-        tab(heading='Create new poll')
+          .results(ng-show="graphVisible")
+            p.pull-right(ng-click="hideGraph()") close
+            .col-sm-8
+              canvas#bar.chart.chart-bar(data="data", labels="labels" options="{showTooltips: false}")
+                  
+        tab(heading='Create new')
           form.form(name='form', ng-submit='addPoll(form)', novalidate='')
             .form-group
               label Question
@@ -25,9 +30,8 @@ div(ng-include='"components/navbar/navbar.html"')
             div
               button.btn.btn-inverse.btn-lg.btn-login(type='submit') Create
 
-        tab(heading='Browse polls')
+        tab(heading='Browse')
           ul.list-group
             li.list-group-item(ng-repeat='poll in anyPolls')
-              strong {{poll.question}}
-                //a.trash(ng-click='delete(poll)')
-                  //span.glyphicon.glyphicon-trash.pull-right
+              strong
+                a(href="{{baseUrl + 'vote/' + poll._id}}") {{poll.question}}
