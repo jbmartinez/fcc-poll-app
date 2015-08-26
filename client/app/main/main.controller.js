@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, $location, Auth) {
+    if (Auth.isLoggedIn) {
+      $location.path('/dashboard');
+    }
+
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
