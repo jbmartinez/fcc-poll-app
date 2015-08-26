@@ -24,3 +24,10 @@ div(ng-include='"components/navbar/navbar.html"')
     
             div
               button.btn.btn-inverse.btn-lg.btn-login(type='submit') Create
+
+        tab(heading='Browse polls')
+          ul.list-group
+            li.list-group-item(ng-repeat='poll in anyPolls')
+              strong {{poll.question}}
+                //a.trash(ng-click='delete(poll)')
+                  //span.glyphicon.glyphicon-trash.pull-right

@@ -3,6 +3,7 @@
 angular.module('workspaceApp')
   .controller('DashboardCtrl', function ($scope, $http, Auth) {
     $scope.polls = [];
+    $scope.anyPolls = [];
     $scope.poll ={};
     $scope.poll.question = '';
     $scope.poll.options = [{text: ''}, {text: ''}];
@@ -11,7 +12,11 @@ angular.module('workspaceApp')
     $http.get('/api/polls/user/' + Auth.getCurrentUser()._id).success(function(polls) {
       $scope.polls = polls;
     });
-    
+
+    $http.get('/api/polls/').success(function(polls) {
+      $scope.anyPolls = polls;
+    });
+
     $scope.addNewChoice = function() {
       $scope.poll.options.push({text: ''});
     };
@@ -37,9 +42,9 @@ angular.module('workspaceApp')
         $scope.poll.question = '';
         $scope.poll.options = [{text: ''}, {text: ''}];
       }
-       
+
     };
-    
+
     $scope.delete = function(poll) {
       $http.delete('/api/polls/' + poll._id);
       angular.forEach($scope.polls, function(p, i) {
