@@ -2,9 +2,7 @@
 
 angular.module('workspaceApp')
   .controller('DashboardCtrl', function ($scope, $http, $location, Auth) {
-    $scope.graphVisible = false;
-    $scope.labels = [];
-    $scope.data = [[]];
+    
     $scope.polls = [];
     $scope.anyPolls = [];
     $scope.poll ={};
@@ -12,6 +10,14 @@ angular.module('workspaceApp')
     $scope.poll.options = [{text: ''}, {text: ''}];
     $scope.baseUrl = $location.protocol() + '://' + $location.host() + '/';
     $scope.getCurrentUser = Auth.getCurrentUser;
+    
+    function initData() {
+      $scope.graphVisible = false;
+      $scope.labels = [];
+      $scope.data = [];
+    }
+    
+    initData();
 
     $http.get('/api/polls/user/' + Auth.getCurrentUser()._id).success(function(polls) {
       $scope.polls = polls;
@@ -64,15 +70,16 @@ angular.module('workspaceApp')
       var poll = $scope.polls[idx];
       for (var i = 0; i < poll.options.length; i++) {
         $scope.labels.push(poll.options[i].text);
-        $scope.data[0].push(poll.options[i].count);
+        $scope.data.push(poll.options[i].count);
       }
       $scope.graphVisible = true;
     };
     
     $scope.hideGraph = function() {
-      $scope.graphVisible = false;
-      $scope.labels = [];
-      $scope.data = [[]];
+      //$scope.graphVisible = false;
+      // $scope.labels = [];
+      // $scope.data = [[]];
+      initData();
       ctrl.chart.destroy();
     };
     
