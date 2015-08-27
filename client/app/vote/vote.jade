@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
   h2 {{poll.question}}
   p Created by {{poll.owner.name}}
     
-  .col-sm-8.choices-box
+  .col-sm-8.choices-box(ng-hide="userVoted")
     form.form(name='form', ng-submit='vote(form)', novalidate='')
       .form-group(ng-repeat="option in poll.options")
         label(for='{{$index}}') {{option.text}}
@@ -11,5 +11,5 @@ div(ng-include='"components/navbar/navbar.html"')
 
       div
         button.btn.btn-primary.btn-lg(type='submit') Vote!
-  .col-sm-8
+  .col-sm-8.graph
     canvas#bar.chart.chart-pie(data="data", labels="labels", legend="true", ng-show="userVoted")
