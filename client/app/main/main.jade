@@ -2,24 +2,29 @@ div(ng-include='"components/navbar/navbar.html"')
 
 header#banner.hero-unit
   .container
-    h1 'Allo, 'Allo!
-    p.lead Kick-start your next web app with Angular Fullstack
-    img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+    h1 Vot-a-matic
+    p.lead Make polls and share them with your friends
+    //img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
 
-.container
+.container.ad
   .row
-    .col-lg-12
-      h1.page-header Features:
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-        li
-          a(href='#', tooltip='{{thing.info}}')
-            | {{thing.name}}
+    .col-sm-4
+      i.fa.fa-bar-chart
+      h2 Instant results
+      p Easy to read graphs give you the power to understand your data. Better than mind reading!
+    .col-sm-4
+      i.fa.fa-tablet
+      h2 Use it anywhere
+      p Vot-a-matic interface looks great at any size. You can use it in your desktop, tablet or mobile
+    .col-sm-4
+      i.fa.fa-exchange
+      h2 Share your opinion
+      p Let other people know your opinion by answering their polls.
 
 footer.footer
   .container
     p
-      | Angular Fullstack v2.1.1
+      | a Free Code Camp Basejump by 
+      a(href='https://twitter.com/_jmartinez') @_jmartinez
       = ' | '
-      a(href='https://twitter.com/tyhenkel') @tyhenkel
-      = ' | '
-      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
+      a(href='https://github.com/jbmartinez/') GitHub
