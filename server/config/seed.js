@@ -5,11 +5,11 @@
 
 'use strict';
 
-var Thing = require('../api/thing/thing.model');
+// var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Poll = require('../api/poll/poll.model');
 
-Thing.find({}).remove(function() {
+/* Thing.find({}).remove(function() {
   Thing.create({
     name : 'Development Tools',
     info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
@@ -29,7 +29,7 @@ Thing.find({}).remove(function() {
     name : 'Deployment Ready',
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
   });
-});
+}); */
 
 User.find({}).remove(function() {
   User.create({
