@@ -4,6 +4,7 @@ div(ng-include='"components/navbar/navbar.html"')
   .col-sm-12
       tabset(type='pills')
         tab(heading='My polls')
+          p.no-polls(ng-hide="polls.length > 0") Create your first poll!
           ul.list-group
             li.list-group-item(ng-repeat='poll in polls')
               strong(ng-click="showGraph($index)") {{poll.question}} 
