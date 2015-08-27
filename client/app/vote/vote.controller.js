@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('VoteCtrl', function ($scope, $http, $routeParams) {
+  .controller('VoteCtrl', function ($scope, $http, $routeParams, Auth) {
     $scope.optionData = {text: ''};
     $scope.labels = [];
     $scope.data = [];
     $scope.userVoted = false;
+    $scope.isLoggedIn = Auth.isLoggedIn;
 
     $http.get('/api/polls/' + $routeParams.pollid).success(function(poll) {
       $scope.poll = poll;

@@ -10,6 +10,7 @@ div(ng-include='"components/navbar/navbar.html"')
         input.pull-right(type='radio', name='choice', id='{{$index}}', value='{{option.text}}', ng-model='optionData.text')
 
       div
-        button.btn.btn-primary.btn-lg(type='submit') Vote!
+        button.btn.btn-primary.btn-lg(type='submit', ng-show="isLoggedIn()") Vote!
+        a.btn.btn-primary(href="/login", ng-hide="isLoggedIn()") Log in to vote!
   .col-sm-8.graph
     canvas#bar.chart.chart-pie(data="data", labels="labels", legend="true", ng-show="userVoted")
