@@ -12,7 +12,17 @@ div(ng-include='"components/navbar/navbar.html"')
                 a.trash(ng-click='delete(poll)')
                   span.glyphicon.glyphicon-trash.pull-right
           .results(ng-show="graphVisible")
-            .col-sm-8.graph-results
+            .col-sm-6
+              table.table.table-hover
+                thead
+                  tr
+                    th.text-center Option
+                    th.text-center Votes
+                tbody
+                  tr(ng-repeat='option in results')
+                    td {{option.text}}
+                    td {{option.count}}
+            .col-sm-6
               canvas#bar.chart.chart-pie(data="data", labels="labels", legend="true", options="{showTooltips: false}")
             p.close.pull-right(ng-click="hideGraph()") close
                   

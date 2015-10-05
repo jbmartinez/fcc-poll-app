@@ -12,5 +12,15 @@ div(ng-include='"components/navbar/navbar.html"')
       div
         button.btn.btn-primary.btn-lg(type='submit', ng-show="isLoggedIn()") Vote!
         a.btn.btn-primary(href="/login", ng-hide="isLoggedIn()") Log in to vote!
-  .col-sm-8.graph
-    canvas#bar.chart.chart-pie(data="data", labels="labels", legend="true", ng-show="userVoted")
+  .col-sm-6(ng-if="userVoted")
+    table.table.table-hover
+      thead
+        tr
+          th.text-center Option
+          th.text-center Votes
+      tbody
+        tr(ng-repeat='option in poll.options')
+          td {{option.text}}
+          td {{option.count}}
+  .col-sm-6.graph(ng-show="userVoted")
+    canvas#bar.chart.chart-pie(data="data", labels="labels", legend="true")

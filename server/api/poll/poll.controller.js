@@ -13,7 +13,7 @@ exports.index = function(req, res) {
 
 // Get list of polls from a single user
 exports.filter = function(req, res) {
-  Poll.find({owner:req.params.user}, function (err, polls) {
+  Poll.find({owner:req.params.user}).populate('owner').exec(function (err, polls) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(polls);
   });
@@ -21,7 +21,7 @@ exports.filter = function(req, res) {
 
 // Get a single poll
 exports.show = function(req, res) {
-  Poll.findById(req.params.id, function (err, poll) {
+  Poll.findById(req.params.id).populate('owner').exec(function (err, poll) {
     if(err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }
     return res.json(poll.populate('owner'));
